@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPrayerPal - Your Islamic Prayer Companion</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --islamic-gold: #D4AF37;
+            --islamic-green: #228B22;
+            --deep-blue: #1B4A6B;
+            --cream: #F5F3E8;
+            --dark-text: #2C3E50;
+            --light-text: #7F8C8D;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background: var(--cream);
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Islamic Pattern Background */
+        .islamic-pattern {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .islamic-pattern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, var(--islamic-gold) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, var(--islamic-gold) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 2px solid var(--islamic-gold);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--deep-blue);
+        }
+
+        .logo::before {
+            content: '🕌';
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            color: var(--islamic-gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--islamic-green) 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 90,90 10,90" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="0.5"/><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="0.5"/></svg>');
+            background-size: 200px 200px;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .bismillah {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            color: var(--islamic-gold);
+            font-weight: 400;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--islamic-gold);
+            color: var(--deep-blue);
+            padding: 18px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.8s forwards;
+            opacity: 0;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
+            background: #E6C547;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--deep-blue);
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--islamic-gold);
+        }
+
+        .section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-align: center;
+            color: var(--light-text);
+            line-height: 1.8;
+        }
+
+        /* Privacy Policy Specific Styles */
+        .privacy-section {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--islamic-gold);
+        }
+
+        .privacy-policy {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .privacy-policy h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 3rem 0 1.5rem;
+            color: var(--deep-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-policy h3::before {
+            content: '◆';
+            color: var(--islamic-gold);
+            font-size: 1rem;
+        }
+
+        .privacy-policy p, 
+        .privacy-policy li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-text);
+            margin-bottom: 1.2rem;
+        }
+
+        .privacy-policy ul {
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .privacy-policy li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .privacy-policy li::marker {
+            color: var(--islamic-gold);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(34, 139, 34, 0.1));
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 4px solid var(--islamic-gold);
+        }
+
+        /* Islamic Quote Section */
+        .quote-section {
+            background: var(--deep-blue);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+        }
+
+        .quote-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .arabic-quote {
+            font-size: 2.5rem;
+            color: var(--islamic-gold);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .quote-translation {
+            font-size: 1.3rem;
+            font-style: italic;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-text);
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--islamic-gold);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .bismillah {
+                font-size: 1.4rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section h2 {
+                font-size: 2.2rem;
+            }
+
+            .privacy-section {
+                padding: 30px 20px;
+                margin: 20px 0;
+            }
+
+            .arabic-quote {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">MyPrayerPal</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#privacy">Privacy Policy</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero islamic-pattern">
+        <div class="container">
+            <div class="hero-content">
+                <div class="bismillah arabic-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+                <h1>MyPrayerPal</h1>
+                <p class="subtitle">Your trusted companion for Islamic prayers, duas, and spiritual guidance</p>
+                <a href="#privacy" class="cta-button">View Privacy Policy</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <div class="container">
+            <div class="quote-content">
+                <div class="arabic-quote arabic-text">وَاذْكُرُوا اللَّهَ كَثِيرًا لَّعَلَّكُمْ تُفْلِحُونَ</div>
+                <p class="quote-translation">"And remember Allah much, that you may be successful" - Quran 8:45</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="privacy" class="section islamic-pattern">
+        <div class="container">
+            <h2>Privacy Policy</h2>
+            <div class="privacy-section">
+                <div class="privacy-policy">
+                    <div class="highlight-box">
+                        <p><strong>Last updated:</strong> August 6, 2025</p>
+                        <p><strong>السلام عليكم ورحمة الله وبركاته</strong></p>
+                    </div>
+                    
+                    <p>At MyPrayerPal, we understand the sacred nature of your spiritual journey and are committed to protecting your privacy with the highest standards of Islamic ethics and modern data protection principles.</p>
+
+                    <h3>Information We Collect</h3>
+                    <p>MyPrayerPal may collect the following types of information to enhance your Islamic prayer experience:</p>
+                    <ul>
+                        <li><strong>Rakaat Counter with AI:</strong> Our app uses your device camera with AI and Machine Learning to count rakaats during prayer. <strong>Important:</strong> The camera does not record, store, or transmit any video data - it only processes movement in real-time for counting purposes</li>
+                        <li><strong>Location Information:</strong> Your location to provide accurate prayer times and Qibla direction (only if you grant permission)</li>
+                        <li><strong>Address Information:</strong> With your explicit permission, we may store your home address for more precise prayer time calculations</li>
+                        <li><strong>Messages:</strong> Communications and messages you send through the app for support or feedback purposes</li>
+                        <li><strong>Device Information:</strong> Basic device details for technical support and app optimization</li>
+                    </ul>
+
+                    <h3>How We Use Your Information</h3>
+                    <p>Following Islamic principles of trust (Amanah), we use your information solely to:</p>
+                    <ul>
+                        <li>Provide accurate prayer times based on your location</li>
+                        <li>Calculate precise Qibla direction for proper prayer orientation</li>
+                        <li>Count rakaats during prayer using AI analysis of your movements (no video recording)</li>
+                        <li>Store your address (with permission) for enhanced prayer time accuracy</li>
+                        <li>Process and respond to your messages and support requests</li>
+                        <li>Improve our app's Islamic features and AI accuracy</li>
+                    </ul>
+
+                    <h3>Camera and AI Technology</h3>
+                    <div class="highlight-box">
+                        <p><strong>Rakaat Counter Feature:</strong> Our innovative AI-powered rakaat counter uses your device camera to help count your prayer movements. Here's what you need to know:</p>
+                        <ul>
+                            <li>The camera analyzes your movements in <strong>real-time only</strong></li>
+                            <li><strong>No video recording</strong> takes place at any time</li>
+                            <li><strong>No visual data is stored</strong> on your device or our servers</li>
+                            <li>The AI processes movement patterns locally on your device</li>
+                            <li>You maintain complete control and can disable this feature anytime</li>
+                            <li>Camera access is requested only when you use the rakaat counter</li>
+                        </ul>
+                    </div>
+                    <h3>Islamic Privacy Principles</h3>
+                    <div class="highlight-box">
+                        <p>We follow the Islamic principle of <strong>Sitr (حفظ الأسرار)</strong> - protecting private matters. MyPrayerPal is designed to minimize data collection while maximizing your spiritual experience. Your personal prayers, duas, and spiritual practices remain completely private on your device.</p>
+                    </div>
+
+                    <h3>Address and Location Data</h3>
+                    <p>When you grant permission to store your address:</p>
+                    <ul>
+                        <li>Your address is used solely for precise prayer time calculations</li>
+                        <li>Address data is encrypted and stored securely</li>
+                        <li>You can update or delete your stored address at any time</li>
+                        <li>We never share your address with third parties</li>
+                        <li>Location sharing is completely optional and under your control</li>
+                    </ul>
+
+                    <h3>Data Storage and Security</h3>
+                    <p>Your information is treated with the utmost care and respect:</p>
+                    <ul>
+                        <li>Location and address data are encrypted and stored securely</li>
+                        <li>Messages are stored only as long as necessary for support purposes</li>
+                        <li>Most spiritual features work locally on your device without data collection</li>
+                        <li>We implement industry-standard security measures for all stored data</li>
+                        <li>You can request deletion of your stored information at any time</li>
+                    </ul>
+
+                    <h3>Data Sharing and Third Parties</h3>
+                    <p>Following the Islamic principle of trust (Amanah), we <strong>never sell, share, or trade</strong> your location, address, or message information. The minimal data we collect is used solely for the app's core Islamic functions.</p>
+
+                    <h3>Your Rights and Control</h3>
+                    <p>You have complete control over your data:</p>
+                    <ul>
+                        <li>Access and review your stored location and address information</li>
+                        <li>Delete your stored address and location data</li>
+                        <li>Control location access permissions</li>
+                        <li>View and delete your message history</li>
+                        <li>Request complete account and data deletion</li>
+                        <li>Disable camera access for rakaat counter feature</li>
+                    </ul>
+
+                    <h3>Children's Privacy</h3>
+                    <p>We are committed to protecting young Muslims' privacy. MyPrayerPal does not knowingly collect personal information from children under 13. We encourage parents to guide their children's Islamic learning journey.</p>
+
+                    <h3>Updates to This Policy</h3>
+                    <p>We may update this Privacy Policy to better serve the Muslim community. Any changes will be communicated clearly through the app with adequate notice.</p>
+
+                    <h3>Islamic Advisory</h3>
+                    <div class="highlight-box">
+                        <p>Our privacy practices have been reviewed to ensure compliance with Islamic ethics and principles. We strive to maintain the highest standards of trust (Amanah) and protection (Hifz) for our Muslim users.</p>
+                    </div>
+
+                    <h3>Contact Us</h3>
+                    <p>If you have any questions about this Privacy Policy or our practices, please reach out:</p>
+                    <p>📧 Email: haider.uraizee1@gmail.com<br>
+                    Subject: Privacy Policy Inquiry</p>
+
+                    <div class="highlight-box">
+                        <p class="arabic-text" style="text-align: center; font-size: 1.2rem; color: var(--deep-blue);">جَزَاكَ اللهُ خَيْرًا</p>
+                        <p style="text-align: center; font-style: italic;">May Allah reward you with goodness for trusting us with your spiritual journey.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>MyPrayerPal</h4>
+                    <p>Your trusted Islamic prayer companion, designed with love for the Muslim Ummah worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>haider.uraizee1@gmail.com<br>
+                    Support & Inquiries</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <p>Privacy Policy<br>
+                    Terms of Service<br>
+                    Islamic Compliance</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2025 MyPrayerPal. All rights reserved.</p>
+                <p class="arabic-text" style="margin-top: 10px; color: var(--islamic-gold);">بَارَكَ اللهُ فِيكُمْ</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.borderBottom = '2px solid var(--islamic-gold)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Add fade-in animation for sections on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe privacy section
+        document.querySelectorAll('.privacy-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
