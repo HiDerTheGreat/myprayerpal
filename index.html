@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyPrayerPal - Your Islamic Prayer Companion</title>
+    <link rel="icon" type="image/png" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMjAiIGZpbGw9IiMzMzMzMzMiLz4KPHBhdGggZD0iTTMwIDUwQzMwIDM2LjE5MjkgNDEuMTkyOSAyNSA1NSAyNUM2OC44MDcxIDI1IDgwIDM2LjE5MjkgODAgNTBDODAgNjMuODA3MSA2OC44MDcxIDc1IDU1IDc1QzQ4LjM3MjYgNzUgNDIuMzQ0MSA3Mi4yNzUzIDM4LjA5MDIgNjcuOTA5OEM0MS42NTU5IDY1LjYwMzEgNDQgNjEuMDgyNSA0NCA1NkM0NCA0OC4yNjggMzcuNzMyIDQyIDMwIDQyVjUwWiIgZmlsbD0id2hpdGUiLz4KPHN0YXIgY3g9IjY1IiBjeT0iNDAiIHI9IjgiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMjAiIGZpbGw9IiMzMzMzMzMiLz4KPHBhdGggZD0iTTMwIDUwQzMwIDM2LjE5MjkgNDEuMTkyOSAyNSA1NSAyNUM2OC44MDcxIDI1IDgwIDM2LjE5MjkgODAgNTBDODAgNjMuODA3MSA2OC44MDcxIDc1IDU1IDc1QzQ4LjM3MjYgNzUgNDIuMzQ0MSA3Mi4yNzUzIDM4LjA5MDIgNjcuOTA5OEM0MS42NTU5IDY1LjYwMzEgNDQgNjEuMDgyNSA0NCA1NkM0NCA0OC4yNjggMzcuNzMyIDQyIDMwIDQyVjUwWiIgZmlsbD0id2hpdGUiLz4KPHN0YXIgY3g9IjY1IiBjeT0iNDAiIHI9IjgiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -14,19 +16,20 @@
         }
 
         :root {
-            --islamic-gold: #D4AF37;
-            --islamic-green: #228B22;
-            --deep-blue: #1B4A6B;
-            --cream: #F5F3E8;
-            --dark-text: #2C3E50;
-            --light-text: #7F8C8D;
+            --astral-gold: #FFD700;
+            --deep-gold: #B8860B;
+            --cosmic-black: #0A0A0A;
+            --space-black: #1A1A1A;
+            --dark-gray: #2C2C2C;
+            --light-gold: #FFF8DC;
+            --shadow-black: #000000;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: var(--dark-text);
-            background: var(--cream);
+            color: var(--light-gold);
+            background: var(--cosmic-black);
         }
 
         .arabic-text {
@@ -40,7 +43,7 @@
             padding: 0 20px;
         }
 
-        /* Islamic Pattern Background */
+        /* Starfield Background */
         .islamic-pattern {
             position: relative;
             overflow: hidden;
@@ -53,23 +56,28 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 25% 25%, var(--islamic-gold) 2px, transparent 2px),
-                radial-gradient(circle at 75% 75%, var(--islamic-gold) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.1;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, var(--astral-gold), transparent),
+                radial-gradient(2px 2px at 40px 70px, var(--astral-gold), transparent),
+                radial-gradient(1px 1px at 90px 40px, var(--astral-gold), transparent),
+                radial-gradient(1px 1px at 130px 80px, var(--astral-gold), transparent),
+                radial-gradient(2px 2px at 160px 30px, var(--astral-gold), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: twinkle 4s linear infinite;
+            opacity: 0.3;
             z-index: 0;
         }
 
         /* Header */
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            border-bottom: 2px solid var(--islamic-gold);
+            border-bottom: 2px solid var(--astral-gold);
         }
 
         nav {
@@ -84,15 +92,16 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--deep-blue);
+            color: var(--astral-gold);
         }
 
         .logo::before {
-            content: '🕌';
-            font-size: 2rem;
+            content: '☪';
+            font-size: 2.2rem;
+            color: var(--astral-gold);
         }
 
         .nav-links {
@@ -103,7 +112,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark-text);
+            color: var(--light-gold);
             font-weight: 500;
             transition: all 0.3s ease;
             padding: 8px 16px;
@@ -111,45 +120,34 @@
         }
 
         .nav-links a:hover {
-            color: var(--islamic-gold);
-            background: rgba(212, 175, 55, 0.1);
+            color: var(--astral-gold);
+            background: rgba(255, 215, 0, 0.1);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--islamic-green) 100%);
-            color: white;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, var(--cosmic-black) 70%);
+            color: var(--light-gold);
             padding: 120px 0 80px;
             text-align: center;
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 90,90 10,90" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="0.5"/><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="0.5"/></svg>');
-            background-size: 200px 200px;
-            opacity: 0.3;
+            overflow: hidden;
         }
 
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .bismillah {
             font-size: 1.8rem;
             margin-bottom: 2rem;
             opacity: 0;
-            animation: fadeInUp 1s ease 0.2s forwards;
-            color: var(--islamic-gold);
+            animation: fadeInUp 1s ease 0.2s forwards, shimmer 4s ease-in-out infinite;
+            color: var(--astral-gold);
             font-weight: 400;
         }
 
@@ -158,8 +156,8 @@
             font-weight: 700;
             margin-bottom: 1rem;
             opacity: 0;
-            animation: fadeInUp 1s ease 0.4s forwards;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease 0.4s forwards, textGlow 3s ease-in-out infinite alternate;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px var(--astral-gold);
         }
 
         .hero .subtitle {
@@ -174,8 +172,8 @@
 
         .cta-button {
             display: inline-block;
-            background: var(--islamic-gold);
-            color: var(--deep-blue);
+            background: var(--astral-gold);
+            color: var(--cosmic-black);
             padding: 18px 36px;
             border-radius: 30px;
             text-decoration: none;
@@ -184,19 +182,20 @@
             transition: all 0.3s ease;
             animation: fadeInUp 1s ease 0.8s forwards;
             opacity: 0;
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
-            background: #E6C547;
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.5);
+            background: #FFF8DC;
         }
 
         /* Sections */
         .section {
             padding: 100px 0;
             position: relative;
+            background: var(--space-black);
         }
 
         .section h2 {
@@ -204,7 +203,7 @@
             font-weight: 600;
             margin-bottom: 2rem;
             text-align: center;
-            color: var(--deep-blue);
+            color: var(--astral-gold);
             position: relative;
         }
 
@@ -216,7 +215,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background: var(--islamic-gold);
+            background: var(--astral-gold);
         }
 
         .section p {
@@ -224,18 +223,18 @@
             max-width: 800px;
             margin: 0 auto 2rem;
             text-align: center;
-            color: var(--light-text);
+            color: var(--light-gold);
             line-height: 1.8;
         }
 
         /* Privacy Policy Specific Styles */
         .privacy-section {
-            background: white;
+            background: var(--space-black);
             border-radius: 20px;
             padding: 60px;
             margin: 40px 0;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            border-left: 5px solid var(--islamic-gold);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 20px rgba(255, 215, 0, 0.1);
+            border: 2px solid var(--astral-gold);
         }
 
         .privacy-policy {
@@ -248,24 +247,29 @@
             font-size: 1.8rem;
             font-weight: 600;
             margin: 3rem 0 1.5rem;
-            color: var(--deep-blue);
+            color: var(--astral-gold) !important;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .privacy-policy h3::before {
-            content: '◆';
-            color: var(--islamic-gold);
+            content: '✦';
+            color: var(--astral-gold);
             font-size: 1rem;
         }
 
         .privacy-policy p, 
         .privacy-policy li {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--dark-text);
-            margin-bottom: 1.2rem;
+            font-size: 1.1rem !important;
+            line-height: 1.8 !important;
+            color: var(--light-gold) !important;
+            margin-bottom: 1.2rem !important;
+        }
+
+        .privacy-policy strong {
+            color: var(--astral-gold) !important;
+            font-weight: 600;
         }
 
         .privacy-policy ul {
@@ -276,39 +280,43 @@
         .privacy-policy li {
             margin-bottom: 0.8rem;
             position: relative;
+            color: var(--light-gold) !important;
         }
 
         .privacy-policy li::marker {
-            color: var(--islamic-gold);
+            color: var(--astral-gold);
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(34, 139, 34, 0.1));
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.08)) !important;
             padding: 30px;
             border-radius: 15px;
             margin: 30px 0;
-            border-left: 4px solid var(--islamic-gold);
+            border: 1px solid var(--astral-gold);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1);
+        }
+
+        .highlight-box p {
+            color: var(--light-gold) !important;
+        }
+
+        .highlight-box strong {
+            color: var(--astral-gold) !important;
+        }
+
+        .highlight-box .arabic-text {
+            color: var(--astral-gold) !important;
         }
 
         /* Islamic Quote Section */
         .quote-section {
-            background: var(--deep-blue);
-            color: white;
+            background: var(--cosmic-black);
+            color: var(--light-gold);
             padding: 80px 0;
             text-align: center;
             position: relative;
-        }
-
-        .quote-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            border-top: 1px solid var(--astral-gold);
+            border-bottom: 1px solid var(--astral-gold);
         }
 
         .quote-content {
@@ -318,9 +326,10 @@
 
         .arabic-quote {
             font-size: 2.5rem;
-            color: var(--islamic-gold);
+            color: var(--astral-gold);
             margin-bottom: 1rem;
             font-weight: 700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
 
         .quote-translation {
@@ -333,10 +342,11 @@
 
         /* Footer */
         footer {
-            background: var(--dark-text);
-            color: white;
+            background: var(--cosmic-black);
+            color: var(--light-gold);
             padding: 60px 0 30px;
             text-align: center;
+            border-top: 1px solid var(--astral-gold);
         }
 
         .footer-content {
@@ -347,7 +357,7 @@
         }
 
         .footer-section h4 {
-            color: var(--islamic-gold);
+            color: var(--astral-gold);
             margin-bottom: 1rem;
             font-size: 1.2rem;
         }
@@ -366,6 +376,36 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px var(--astral-gold);
+            }
+            100% {
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 40px var(--astral-gold), 0 0 60px var(--astral-gold);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.6);
+            }
+            100% {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
             }
         }
 
@@ -479,6 +519,7 @@
                             <li>Camera access is requested only when you use the rakaat counter</li>
                         </ul>
                     </div>
+
                     <h3>Islamic Privacy Principles</h3>
                     <div class="highlight-box">
                         <p>We follow the Islamic principle of <strong>Sitr (حفظ الأسرار)</strong> - protecting private matters. MyPrayerPal is designed to minimize data collection while maximizing your spiritual experience. Your personal prayers, duas, and spiritual practices remain completely private on your device.</p>
@@ -535,7 +576,7 @@
                     Subject: Privacy Policy Inquiry</p>
 
                     <div class="highlight-box">
-                        <p class="arabic-text" style="text-align: center; font-size: 1.2rem; color: var(--deep-blue);">جَزَاكَ اللهُ خَيْرًا</p>
+                        <p class="arabic-text" style="text-align: center; font-size: 1.2rem; color: var(--astral-gold);">جَزَاكَ اللهُ خَيْرًا</p>
                         <p style="text-align: center; font-style: italic;">May Allah reward you with goodness for trusting us with your spiritual journey.</p>
                     </div>
                 </div>
@@ -564,7 +605,7 @@
             </div>
             <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2rem; margin-top: 2rem;">
                 <p>&copy; 2025 MyPrayerPal. All rights reserved.</p>
-                <p class="arabic-text" style="margin-top: 10px; color: var(--islamic-gold);">بَارَكَ اللهُ فِيكُمْ</p>
+                <p class="arabic-text" style="margin-top: 10px; color: var(--astral-gold);">بَارَكَ اللهُ فِيكُمْ</p>
             </div>
         </div>
     </footer>
@@ -584,10 +625,10 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.borderBottom = '2px solid var(--islamic-gold)';
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+                header.style.borderBottom = '2px solid var(--astral-gold)';
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
             }
         });
 
