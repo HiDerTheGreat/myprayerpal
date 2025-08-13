@@ -439,6 +439,39 @@
             .arabic-quote {
                 font-size: 1.8rem;
             }
+
+            /* FIXED: Mobile button spacing */
+            .cta-button {
+                display: block !important; /* Stack buttons vertically */
+                margin: 15px auto !important; /* Center with vertical spacing */
+                margin-left: 0 !important; /* Override the margin-left: 1rem */
+                width: 80%; /* Make buttons slightly narrower on mobile */
+                max-width: 280px; /* Limit maximum width */
+                text-align: center;
+            }
+            
+            /* Add extra spacing between the two buttons specifically */
+            .cta-button:first-of-type {
+                margin-bottom: 25px !important;
+            }
+            
+            .cta-button:last-of-type {
+                margin-top: 10px !important;
+            }
+        }
+
+        /* For very small screens */
+        @media (max-width: 480px) {
+            .cta-button {
+                margin: 20px auto !important;
+                width: 85%;
+                padding: 16px 28px; /* Slightly smaller padding */
+                font-size: 1rem; /* Slightly smaller text */
+            }
+            
+            .cta-button:first-of-type {
+                margin-bottom: 30px !important;
+            }
         }
     </style>
 </head>
